@@ -6,8 +6,6 @@ Public Class mainForm
     Public hostNames As New List(Of String)
     Public ipAddress As New List(Of String)
     Public Sub New()
-
-
         ' This call is required by the designer.
         InitializeComponent()
 
@@ -15,17 +13,20 @@ Public Class mainForm
 
         readTable()
         fillDataGridView()
+        'UpdateTable()
     End Sub
 
     Public Sub readTable()
-        'Dim dataTable = File.Open("data_table.ini", FileMode.OpenOrCreate)
+        Dim fs As FileStream = File.Open("data_table.ini", FileMode.OpenOrCreate)
+        fs.Close()
+
         Dim parts As String()
         Using reader As StreamReader = New StreamReader("data_table.ini")
             Dim line As String
             line = reader.ReadLine()
             Do While (Not line Is Nothing And line <> "")
                 parts = line.Split(",")
-                If parts(0) <> "" And parts(1) <> "" Then
+                If parts(0) <> "" Or parts(1) <> "" Then
                     hostNames.Add(parts(0))
                     ipAddress.Add(parts(1))
                 End If
@@ -50,9 +51,12 @@ Public Class mainForm
     End Sub
 
     Public Sub executeCommandPrompt(ByVal ipaddress As String)
-        Dim p As Process = New Process()
-        'Process.Start("cmd", "/k mstsc /v: " & ipaddress & " /admin")
-        Process.Start("cmd", "/k echo " & ipaddress)
+        If ipaddress <> "" Then
+            Dim commandString As String = "/c mstsc /v: " & ipaddress
+            If chkbox_multimon.CheckState = 1 Then commandString = commandString & " /multimon"
+            If chkbox_session.CheckState = 1 Then commandString = commandString & " /admin"
+            Process.Start("cmd", commandString)
+        End If
     End Sub
 
 
@@ -104,13 +108,64 @@ Public Class mainForm
             Dim colName As String = cell.OwningColumn.DataPropertyName
 
             If lastExecutedRow <> rowIndex Then
-                If cell.Value <> "" Then
-                    executeCommandPrompt(cell.Value)
-                End If
+                executeCommandPrompt(cell.Value)
                 lastExecutedRow = rowIndex
             End If
         Next
     End Sub
+
+    Private Sub DataGridView1_CellEndEdit(ByVal sender As Object, _
+        ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
+
+        ' Clear the row error in case the user presses ESC.   
+        DataGridView1.Rows(e.RowIndex).ErrorText = String.Empty
+        UpdateTable()
+    End Sub
+
+    Private Sub DataGridView1_UserDeletingRow( _
+        ByVal sender As Object, _
+        ByVal e As System.Windows.Forms. _
+        DataGridViewRowCancelEventArgs) Handles DataGridView1.UserDeletingRow
+
+        If (Not e.Row.IsNewRow) Then
+            Dim response As DialogResult = _
+            MessageBox.Show( _
+            "Are you sure you want to delete this row?", _
+            "Delete row?", _
+            MessageBoxButtons.YesNo, _
+            MessageBoxIcon.Question, _
+            MessageBoxDefaultButton.Button2)
+            If (response = DialogResult.No) Then
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+    Private Sub DataGridView1_UserDeletedRow(sender As Object, e As DataGridViewRowEventArgs) Handles DataGridView1.UserDeletedRow
+        UpdateTable()
+    End Sub
+
+
+    Public Sub UpdateTable()
+        Dim result As String = ""
+        Dim sw As New System.IO.StreamWriter("data_table.ini")
+
+        'go through all rows
+        For rowNumber As Integer = 0 To DataGridView1.Rows.Count - 1
+            result = DataGridView1.Item(0, rowNumber).Value & ","
+            result += DataGridView1.Item(1, rowNumber).Value
+            If result <> "," Then
+                sw.WriteLine(result)
+            End If
+        Next
+
+        sw.Close()
+
+    End Sub
+
+    Public Sub ResetTable()
+        File.Create("data_table.ini")
+    End Sub
+
 End Class
 
 
