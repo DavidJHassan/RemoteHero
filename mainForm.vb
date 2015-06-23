@@ -53,49 +53,15 @@ Public Class mainForm
     Public Sub executeCommandPrompt(ByVal ipaddress As String)
         If ipaddress <> "" Then
             Dim commandString As String = "/c mstsc /v: " & ipaddress
-            If chkbox_multimon.CheckState = 1 Then commandString = commandString & " /multimon"
+            'If chkbox_fitScreen.CheckState = 1 Then
+            '    commandString = commandString & " /f"
+            '    commandString = commandString & " /multimon"
+            'End If
+
             If chkbox_session.CheckState = 1 Then commandString = commandString & " /admin"
             Process.Start("cmd", commandString)
         End If
     End Sub
-
-
-    'Dim de As New DirectoryEntry()
-    'de.Path = "LDAP://DC=BOWATER"
-
-
-    'Try
-    '    For Each d As DirectoryEntry In de.Children()
-    '        MsgBox(d.Name)
-    '    Next
-    'Catch ex As Exception
-    '    MsgBox(ex.Message)
-    'End Try
-
-
-    'Dim strHostName As New String("")
-    '' Getting Ip address of local machine...
-    '' First get the host name of local machine.
-    'strHostName = Dns.GetHostName()
-
-    '' Then using host name, get the IP address list..
-    'Dim ipEntry As IPHostEntry = Dns.GetHostByName(strHostName)
-    'Dim addr As IPAddress() = ipEntry.AddressList
-
-    'Dim i As Integer = 0
-    'Dim dataTable As New DataTable
-    'dataTable.Columns.Add("Host Name")
-    'dataTable.Columns.Add("TCP/IP")
-
-    'While i < addr.Length
-    '    dataTable.Rows.Add(Dns.GetHostByAddress(addr(i).ToString()).HostName, addr(i).ToString())
-    '    'hostName.Add()
-    '    'ip.Add()
-    '    System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1)
-    'End While
-    'DataGridView1.DataSource = dataTable
-    'DataGridView1.Refresh()
-
 
     Private Sub btn_Connect_Click(sender As Object, e As EventArgs) Handles btn_Connect.Click
         'MsgBox(DataGridView1.CurrentCell.Value.ToString)
@@ -167,6 +133,3 @@ Public Class mainForm
     End Sub
 
 End Class
-
-
-

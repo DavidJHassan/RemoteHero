@@ -27,9 +27,8 @@ Partial Class mainForm
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.chkbox_session = New System.Windows.Forms.CheckBox()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.chkbox_multimon = New System.Windows.Forms.CheckBox()
+        Me.chkbox_session = New System.Windows.Forms.CheckBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel2.SuspendLayout()
@@ -96,6 +95,20 @@ Partial Class mainForm
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(454, 58)
         Me.TableLayoutPanel2.TabIndex = 4
         '
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.ColumnCount = 1
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.chkbox_session, 0, 0)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 2
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(221, 52)
+        Me.TableLayoutPanel3.TabIndex = 2
+        '
         'chkbox_session
         '
         Me.chkbox_session.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -109,58 +122,29 @@ Partial Class mainForm
         Me.chkbox_session.Text = "Static Session"
         Me.chkbox_session.UseVisualStyleBackColor = True
         '
-        'TableLayoutPanel3
-        '
-        Me.TableLayoutPanel3.ColumnCount = 1
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.chkbox_session, 0, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.chkbox_multimon, 0, 1)
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 2
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(221, 52)
-        Me.TableLayoutPanel3.TabIndex = 2
-        '
-        'chkbox_multimon
-        '
-        Me.chkbox_multimon.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.chkbox_multimon.AutoSize = True
-        Me.chkbox_multimon.Checked = True
-        Me.chkbox_multimon.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbox_multimon.Location = New System.Drawing.Point(3, 32)
-        Me.chkbox_multimon.Name = "chkbox_multimon"
-        Me.chkbox_multimon.Size = New System.Drawing.Size(124, 17)
-        Me.chkbox_multimon.TabIndex = 3
-        Me.chkbox_multimon.Text = "Stretch to Fit Monitor"
-        Me.chkbox_multimon.UseVisualStyleBackColor = True
-        '
         'mainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(484, 512)
         Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(500, 550)
         Me.Name = "mainForm"
         Me.Text = "Remote Hero"
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanel2.ResumeLayout(False)
-        Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.TableLayoutPanel3.PerformLayout()
-        Me.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(false)
+        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.TableLayoutPanel2.ResumeLayout(false)
+        Me.TableLayoutPanel3.ResumeLayout(false)
+        Me.TableLayoutPanel3.PerformLayout
+        Me.ResumeLayout(false)
 
-    End Sub
+End Sub
     Friend WithEvents btn_Connect As System.Windows.Forms.Button
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents chkbox_session As System.Windows.Forms.CheckBox
     Friend WithEvents TableLayoutPanel3 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents chkbox_multimon As System.Windows.Forms.CheckBox
 
 End Class
