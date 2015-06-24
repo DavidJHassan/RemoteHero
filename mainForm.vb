@@ -39,10 +39,11 @@ Public Class mainForm
         Dim dataTable As New DataTable
         dataTable.Columns.Add("Host Name")
         dataTable.Columns.Add("TCP/IP")
+        dataTable.Columns.Add("Ping (ms)")
 
         Dim i As Integer = 0
         While i < hostNames.Count
-            dataTable.Rows.Add(hostNames(i), ipAddress(i))
+            dataTable.Rows.Add(hostNames(i), ipAddress(i), "")
             System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1)
         End While
 
