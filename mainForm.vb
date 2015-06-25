@@ -37,13 +37,15 @@ Public Class mainForm
 
     Public Sub fillDataGridView()
         Dim dataTable As New DataTable
+        Dim ping As String
         dataTable.Columns.Add("Host Name")
         dataTable.Columns.Add("TCP/IP")
         dataTable.Columns.Add("Ping (ms)")
 
         Dim i As Integer = 0
         While i < hostNames.Count
-            dataTable.Rows.Add(hostNames(i), ipAddress(i), "")
+            If ipAddress(i) <> "" Then ping = GetPingMs(ipAddress(i)) Else ping = GetPingMs(hostNames(i))
+            dataTable.Rows.Add(hostNames(i), ipAddress(i), ping)
             System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1)
         End While
 
@@ -132,5 +134,10 @@ Public Class mainForm
     Public Sub ResetTable()
         File.Create("data_table.ini")
     End Sub
+
+    Public Shared Function GetPingMs(ByRef hostNameOrAddress As String)
+        Dim ping As New System.Net.NetworkInformation.Ping
+        Return ping.Send(hostNameOrAddress).RoundtripTime
+    End Function
 
 End Class
