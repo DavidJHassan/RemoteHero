@@ -1,20 +1,32 @@
 ﻿Imports System.DirectoryServices
 Imports System.Net
 Imports System.IO
+Imports System.Timers
 
 Public Class mainForm
     Public hostNames As New List(Of String)
     Public ipAddress As New List(Of String)
+    Public pingTimer As Timer
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+        initializePingTimer()
 
         readTable()
         fillDataGridView()
         'UpdateTable()
     End Sub
+
+    Public Sub initializePingTimer()
+        pingTimer = New Timer(1000)
+        pingTimer.AutoReset = True
+        pingTimer.Enabled = True
+        AddHandler pingTimer.Elapsed, AddressOf updatePings
+        pingTimer.Start()
+    End Sub
+
 
     Public Sub readTable()
         Dim fs As FileStream = File.Open("data_table.ini", FileMode.OpenOrCreate)
@@ -113,7 +125,6 @@ Public Class mainForm
         UpdateTable()
     End Sub
 
-
     Public Sub UpdateTable()
         Dim result As String = ""
         Dim sw As New System.IO.StreamWriter("data_table.ini")
@@ -140,4 +151,14 @@ Public Class mainForm
         Return ping.Send(hostNameOrAddress).RoundtripTime
     End Function
 
+    Public Function updatePings(source As Object, e As ElapsedEventArgs)
+        For rowNumber As Integer = 0 To DataGridView1.Rows.Count - 1
+            If DataGridView1.Item(1, rowNumber).Value <> "" Then
+                DataGridView1.Item(2, rowNumber).Value = GetPingMs(DataGridView1.Item(1, rowNumber).Value)
+            ElseIf DataGridView1.Item(0, rowNumber).Value <> "" Then
+                DataGridView1.Item(2, rowNumber).Value = GetPingMs(DataGridView1.Item(0, rowNumber).Value)
+            End If
+        Next
+        Return 0
+    End Function
 End Class
