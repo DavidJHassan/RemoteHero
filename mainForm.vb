@@ -14,7 +14,7 @@ Public Class mainForm
         ' Add any initialization after the InitializeComponent() call.
         initializePingTimer()
 
-        readTable()
+        readTable("")
         fillDataGridView()
         'UpdateTable()
     End Sub
@@ -28,12 +28,18 @@ Public Class mainForm
     End Sub
 
 
-    Public Sub readTable()
-        Dim fs As FileStream = File.Open("data_table.ini", FileMode.OpenOrCreate)
+    Public Sub readTable(ByVal fileName As String)
+        Dim fs As FileStream
+        If fileName = "" Then
+            fs = File.Open("data_table.rhc", FileMode.OpenOrCreate)
+        Else
+            fs = File.Open(fileName, FileMode.Open)
+        End If
+
         fs.Close()
 
         Dim parts As String()
-        Using reader As StreamReader = New StreamReader("data_table.ini")
+        Using reader As StreamReader = New StreamReader("data_table.rhc")
             Dim line As String
             line = reader.ReadLine()
             Do While (Not line Is Nothing And line <> "")
@@ -56,7 +62,11 @@ Public Class mainForm
 
         Dim i As Integer = 0
         While i < hostNames.Count
-            If ipAddress(i) <> "" Then ping = GetPingMs(ipAddress(i)) Else ping = GetPingMs(hostNames(i))
+            If ipAddress(i) <> "" Then
+                ping = GetPingMs(ipAddress(i))
+            ElseIf hostNames(i) <> "" Then
+                ping = GetPingMs(hostNames(i))
+            End If
             dataTable.Rows.Add(hostNames(i), ipAddress(i), ping)
             System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1)
         End While
@@ -127,7 +137,7 @@ Public Class mainForm
 
     Public Sub UpdateTable()
         Dim result As String = ""
-        Dim sw As New System.IO.StreamWriter("data_table.ini")
+        Dim sw As New System.IO.StreamWriter("data_table.rhc")
 
         'go through all rows
         For rowNumber As Integer = 0 To DataGridView1.Rows.Count - 1
@@ -143,7 +153,8 @@ Public Class mainForm
     End Sub
 
     Public Sub ResetTable()
-        File.Create("data_table.ini")
+        Dim fs As FileStream = File.Create("data_table.rhc")
+        fs.Close()
     End Sub
 
     Public Shared Function GetPingMs(ByRef hostNameOrAddress As String)
@@ -161,4 +172,56 @@ Public Class mainForm
         Next
         Return 0
     End Function
+
+    Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
+        Close()
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        'MsgBox("Remote Hero" & vbNewLine & "AscendicaDevelopment" & vbNewLine & "2015")
+        Dim frmAbout As New AboutBox
+        frmAbout.ShowDialog(Me)
+    End Sub
+
+    Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
+        Dim response As DialogResult = _
+            MessageBox.Show( _
+            "Are you sure you want to create a new file?" & vbNewLine & "Doing so will overwrite your current configuration", _
+            "Create a new file?", _
+            MessageBoxButtons.YesNo, _
+            MessageBoxIcon.Question, _
+            MessageBoxDefaultButton.Button2)
+        If (response = DialogResult.No) Then
+            Exit Sub
+        End If
+
+        ResetTable()
+        readTable("")
+        fillDataGridView()
+
+    End Sub
+
+    Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+        Dim ofd As New OpenFileDialog
+        Dim response As DialogResult
+        ofd.DefaultExt = ".rhc"
+        ofd.InitialDirectory = Application.StartupPath()
+        ofd.Filter = "Remote Hero Config (*.rhc)|*.rhc"
+        ofd.FilterIndex = 1
+        ofd.Multiselect = False
+        response = ofd.ShowDialog()
+        If response <> Windows.Forms.DialogResult.Cancel Then
+            response = _
+            MessageBox.Show( _
+            "Are you sure you want to open a new file?" & vbNewLine & "Doing so will overwrite your current configuration", _
+            "Open a new file?", _
+            MessageBoxButtons.YesNo, _
+            MessageBoxIcon.Question, _
+            MessageBoxDefaultButton.Button2)
+            If (response = DialogResult.No) Then
+                Exit Sub
+            End If
+            readTable(ofd.FileName)
+        End If
+    End Sub
 End Class

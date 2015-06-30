@@ -10,12 +10,12 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("RemoteHero")> 
-<Assembly: AssemblyDescription("Remote Desktop Tool")> 
+<Assembly: AssemblyTitle("Remote Hero")> 
+<Assembly: AssemblyDescription("Remote Desktop Management Tool")> 
 <Assembly: AssemblyCompany("Ascendica Development")> 
-<Assembly: AssemblyProduct("RemoteHero")> 
+<Assembly: AssemblyProduct("Remote Hero")> 
 <Assembly: AssemblyCopyright("Copyright ©  2015")> 
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTrademark("Ascendica Development")> 
 
 <Assembly: ComVisible(False)> 
 
