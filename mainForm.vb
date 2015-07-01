@@ -4,9 +4,10 @@ Imports System.IO
 Imports System.Timers
 
 Public Class mainForm
-    Public hostNames As New List(Of String)
-    Public ipAddress As New List(Of String)
+    Public hostNames As List(Of String)
+    Public ipAddress As List(Of String)
     Public pingTimer As Timer
+    Public fn As String
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
@@ -14,9 +15,13 @@ Public Class mainForm
         ' Add any initialization after the InitializeComponent() call.
         initializePingTimer()
 
+        hostNames = New List(Of String)
+        ipAddress = New List(Of String)
+
+        'Main Functions
         readTable("")
         fillDataGridView()
-        'UpdateTable()
+        updateStatus()
     End Sub
 
     Public Sub initializePingTimer()
@@ -31,15 +36,17 @@ Public Class mainForm
     Public Sub readTable(ByVal fileName As String)
         Dim fs As FileStream
         If fileName = "" Then
+            fileName = "data_table.rhc"
             fs = File.Open("data_table.rhc", FileMode.OpenOrCreate)
         Else
             fs = File.Open(fileName, FileMode.Open)
         End If
-
         fs.Close()
 
+        fn = fileName
+
         Dim parts As String()
-        Using reader As StreamReader = New StreamReader("data_table.rhc")
+        Using reader As StreamReader = New StreamReader(fileName)
             Dim line As String
             line = reader.ReadLine()
             Do While (Not line Is Nothing And line <> "")
@@ -159,7 +166,14 @@ Public Class mainForm
 
     Public Shared Function GetPingMs(ByRef hostNameOrAddress As String)
         Dim ping As New System.Net.NetworkInformation.Ping
-        Return ping.Send(hostNameOrAddress).RoundtripTime
+        Dim result As Integer
+        Try
+            result = ping.Send(hostNameOrAddress).RoundtripTime
+        Catch e As InvalidOperationException
+            result = -1
+        End Try
+
+        Return result
     End Function
 
     Public Function updatePings(source As Object, e As ElapsedEventArgs)
@@ -195,6 +209,9 @@ Public Class mainForm
             Exit Sub
         End If
 
+        hostNames = New List(Of String)
+        ipAddress = New List(Of String)
+
         ResetTable()
         readTable("")
         fillDataGridView()
@@ -222,6 +239,12 @@ Public Class mainForm
                 Exit Sub
             End If
             readTable(ofd.FileName)
+            fillDataGridView()
         End If
     End Sub
+
+    Public Sub updateStatus()
+        status_lbl.Text = "Status: " & fn & " Config File Loaded"
+    End Sub
+
 End Class

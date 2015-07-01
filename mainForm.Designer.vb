@@ -32,36 +32,39 @@ Partial Class mainForm
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanel2.SuspendLayout()
-        Me.TableLayoutPanel3.SuspendLayout()
-        Me.MenuStrip2.SuspendLayout()
-        Me.SuspendLayout()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.status_lbl = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TableLayoutPanel1.SuspendLayout
+        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TableLayoutPanel2.SuspendLayout
+        Me.TableLayoutPanel3.SuspendLayout
+        Me.MenuStrip2.SuspendLayout
+        Me.StatusStrip1.SuspendLayout
+        Me.SuspendLayout
         '
         'btn_Connect
         '
-        Me.btn_Connect.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_Connect.Location = New System.Drawing.Point(371, 29)
+        Me.btn_Connect.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.btn_Connect.Location = New System.Drawing.Point(371, 28)
         Me.btn_Connect.Name = "btn_Connect"
         Me.btn_Connect.Size = New System.Drawing.Size(80, 24)
         Me.btn_Connect.TabIndex = 1
         Me.btn_Connect.Text = "Connect"
-        Me.btn_Connect.UseVisualStyleBackColor = True
+        Me.btn_Connect.UseVisualStyleBackColor = true
         '
         'TableLayoutPanel1
         '
-        Me.TableLayoutPanel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom)  _
+            Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.ColumnCount = 1
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100!))
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 27)
@@ -69,69 +72,69 @@ Partial Class mainForm
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.95652!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.04348!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(460, 473)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(460, 460)
         Me.TableLayoutPanel1.TabIndex = 3
         '
         'DataGridView1
         '
-        Me.DataGridView1.AllowDrop = True
-        Me.DataGridView1.AllowUserToOrderColumns = True
-        Me.DataGridView1.AllowUserToResizeRows = False
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView1.AllowDrop = true
+        Me.DataGridView1.AllowUserToOrderColumns = true
+        Me.DataGridView1.AllowUserToResizeRows = false
+        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom)  _
+            Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(3, 3)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(454, 405)
+        Me.DataGridView1.Size = New System.Drawing.Size(454, 393)
         Me.DataGridView1.TabIndex = 3
         '
         'TableLayoutPanel2
         '
-        Me.TableLayoutPanel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom)  _
+            Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel2.ColumnCount = 2
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20!))
         Me.TableLayoutPanel2.Controls.Add(Me.btn_Connect, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel3, 0, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 414)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 402)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(454, 56)
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(454, 55)
         Me.TableLayoutPanel2.TabIndex = 4
         '
         'TableLayoutPanel3
         '
         Me.TableLayoutPanel3.ColumnCount = 1
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20!))
         Me.TableLayoutPanel3.Controls.Add(Me.chkbox_session, 0, 0)
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 2
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(221, 50)
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(221, 49)
         Me.TableLayoutPanel3.TabIndex = 2
         '
         'chkbox_session
         '
-        Me.chkbox_session.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.chkbox_session.AutoSize = True
-        Me.chkbox_session.Checked = True
+        Me.chkbox_session.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
+        Me.chkbox_session.AutoSize = true
+        Me.chkbox_session.Checked = true
         Me.chkbox_session.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbox_session.Location = New System.Drawing.Point(3, 5)
+        Me.chkbox_session.Location = New System.Drawing.Point(3, 4)
         Me.chkbox_session.Name = "chkbox_session"
         Me.chkbox_session.Size = New System.Drawing.Size(93, 17)
         Me.chkbox_session.TabIndex = 2
         Me.chkbox_session.Text = "Static Session"
-        Me.chkbox_session.UseVisualStyleBackColor = True
+        Me.chkbox_session.UseVisualStyleBackColor = true
         '
         'MenuStrip1
         '
@@ -157,68 +160,86 @@ Partial Class mainForm
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
-        'AboutToolStripMenuItem
+        'NewToolStripMenuItem
         '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
-        Me.AboutToolStripMenuItem.Text = "About"
+        Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
+        Me.NewToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N),System.Windows.Forms.Keys)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.NewToolStripMenuItem.Text = "New"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.OpenToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O),System.Windows.Forms.Keys)
         Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.OpenToolStripMenuItem.Text = "Open"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S),System.Windows.Forms.Keys)
         Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.SaveToolStripMenuItem.Text = "Save As"
-        '
-        'CloseToolStripMenuItem
-        '
-        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
-        Me.CloseToolStripMenuItem.Text = "Exit"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(151, 6)
         '
-        'NewToolStripMenuItem
+        'CloseToolStripMenuItem
         '
-        Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        Me.NewToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
-        Me.NewToolStripMenuItem.Text = "New"
+        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4),System.Windows.Forms.Keys)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.CloseToolStripMenuItem.Text = "Exit"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.status_lbl})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 490)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(484, 22)
+        Me.StatusStrip1.TabIndex = 6
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'status_lbl
+        '
+        Me.status_lbl.Name = "status_lbl"
+        Me.status_lbl.Size = New System.Drawing.Size(45, 17)
+        Me.status_lbl.Text = "Status: "
         '
         'mainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(484, 512)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.MenuStrip2)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MinimumSize = New System.Drawing.Size(500, 550)
         Me.Name = "mainForm"
         Me.Text = "Remote Hero"
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanel2.ResumeLayout(False)
-        Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.TableLayoutPanel3.PerformLayout()
-        Me.MenuStrip2.ResumeLayout(False)
-        Me.MenuStrip2.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.TableLayoutPanel1.ResumeLayout(false)
+        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.TableLayoutPanel2.ResumeLayout(false)
+        Me.TableLayoutPanel3.ResumeLayout(false)
+        Me.TableLayoutPanel3.PerformLayout
+        Me.MenuStrip2.ResumeLayout(false)
+        Me.MenuStrip2.PerformLayout
+        Me.StatusStrip1.ResumeLayout(false)
+        Me.StatusStrip1.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
 End Sub
     Friend WithEvents btn_Connect As System.Windows.Forms.Button
@@ -236,5 +257,7 @@ End Sub
     Friend WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents status_lbl As System.Windows.Forms.ToolStripStatusLabel
 
 End Class
