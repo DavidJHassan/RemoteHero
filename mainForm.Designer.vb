@@ -210,13 +210,18 @@ Partial Class mainForm
         '
         'status_lbl
         '
+        Me.status_lbl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.status_lbl.MergeAction = System.Windows.Forms.MergeAction.Replace
         Me.status_lbl.Name = "status_lbl"
-        Me.status_lbl.Size = New System.Drawing.Size(45, 17)
+        Me.status_lbl.Overflow = System.Windows.Forms.ToolStripItemOverflow.Always
+        Me.status_lbl.Size = New System.Drawing.Size(438, 17)
+        Me.status_lbl.Spring = True
         Me.status_lbl.Text = "Status: "
+        Me.status_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'mainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(484, 512)
@@ -224,24 +229,24 @@ Partial Class mainForm
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.MenuStrip2)
-        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MinimumSize = New System.Drawing.Size(500, 550)
         Me.Name = "mainForm"
         Me.Text = "Remote Hero"
-        Me.TableLayoutPanel1.ResumeLayout(false)
-        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.TableLayoutPanel2.ResumeLayout(false)
-        Me.TableLayoutPanel3.ResumeLayout(false)
-        Me.TableLayoutPanel3.PerformLayout
-        Me.MenuStrip2.ResumeLayout(false)
-        Me.MenuStrip2.PerformLayout
-        Me.StatusStrip1.ResumeLayout(false)
-        Me.StatusStrip1.PerformLayout
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel3.ResumeLayout(False)
+        Me.TableLayoutPanel3.PerformLayout()
+        Me.MenuStrip2.ResumeLayout(False)
+        Me.MenuStrip2.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents btn_Connect As System.Windows.Forms.Button
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView

@@ -3,6 +3,8 @@ Imports System.Net
 Imports System.IO
 Imports System.Timers
 
+
+
 Public Class mainForm
     Public hostNames As List(Of String)
     Public ipAddress As List(Of String)
@@ -14,14 +16,8 @@ Public Class mainForm
 
         ' Add any initialization after the InitializeComponent() call.
         initializePingTimer()
-
-        hostNames = New List(Of String)
-        ipAddress = New List(Of String)
-
-        'Main Functions
+        Control.CheckForIllegalCrossThreadCalls = False
         readTable("")
-        fillDataGridView()
-        updateStatus()
     End Sub
 
     Public Sub initializePingTimer()
@@ -35,6 +31,9 @@ Public Class mainForm
 
     Public Sub readTable(ByVal fileName As String)
         Dim fs As FileStream
+        hostNames = New List(Of String)
+        ipAddress = New List(Of String)
+
         If fileName = "" Then
             fileName = "data_table.rhc"
             fs = File.Open("data_table.rhc", FileMode.OpenOrCreate)
@@ -58,6 +57,10 @@ Public Class mainForm
                 line = reader.ReadLine()
             Loop
         End Using
+
+        fillDataGridView()
+        updateStatus()
+
     End Sub
 
     Public Sub fillDataGridView()
@@ -69,6 +72,7 @@ Public Class mainForm
 
         Dim i As Integer = 0
         While i < hostNames.Count
+            ping = -1
             If ipAddress(i) <> "" Then
                 ping = GetPingMs(ipAddress(i))
             ElseIf hostNames(i) <> "" Then
@@ -147,7 +151,7 @@ Public Class mainForm
         Dim sw As New System.IO.StreamWriter("data_table.rhc")
 
         'go through all rows
-        For rowNumber As Integer = 0 To DataGridView1.Rows.Count - 1
+        For rowNumber As Integer = 0 To DataGridView1.Rows.Count - 2
             result = DataGridView1.Item(0, rowNumber).Value & ","
             result += DataGridView1.Item(1, rowNumber).Value
             If result <> "," Then
@@ -168,7 +172,7 @@ Public Class mainForm
         Dim ping As New System.Net.NetworkInformation.Ping
         Dim result As Integer
         Try
-            result = ping.Send(hostNameOrAddress).RoundtripTime
+            If hostNameOrAddress <> "" Then result = ping.Send(hostNameOrAddress).RoundtripTime
         Catch e As InvalidOperationException
             result = -1
         End Try
@@ -177,10 +181,10 @@ Public Class mainForm
     End Function
 
     Public Function updatePings(source As Object, e As ElapsedEventArgs)
-        For rowNumber As Integer = 0 To DataGridView1.Rows.Count - 1
-            If DataGridView1.Item(1, rowNumber).Value <> "" Then
+        For rowNumber As Integer = 0 To DataGridView1.Rows.Count - 2
+            If Not IsDBNull(DataGridView1.Item(1, rowNumber).Value) Then
                 DataGridView1.Item(2, rowNumber).Value = GetPingMs(DataGridView1.Item(1, rowNumber).Value)
-            ElseIf DataGridView1.Item(0, rowNumber).Value <> "" Then
+            ElseIf Not IsDBNull(DataGridView1.Item(0, rowNumber).Value) Then
                 DataGridView1.Item(2, rowNumber).Value = GetPingMs(DataGridView1.Item(0, rowNumber).Value)
             End If
         Next
@@ -209,12 +213,8 @@ Public Class mainForm
             Exit Sub
         End If
 
-        hostNames = New List(Of String)
-        ipAddress = New List(Of String)
-
         ResetTable()
         readTable("")
-        fillDataGridView()
 
     End Sub
 
@@ -238,13 +238,13 @@ Public Class mainForm
             If (response = DialogResult.No) Then
                 Exit Sub
             End If
+            ResetTable()
             readTable(ofd.FileName)
-            fillDataGridView()
         End If
     End Sub
 
     Public Sub updateStatus()
-        status_lbl.Text = "Status: " & fn & " Config File Loaded"
+        status_lbl.Text = "Status: " & fn & " loaded"
     End Sub
 
 End Class
